@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>中国梦想游-会员登录页</title>
+<link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+<script src="/static/js/distpicker.data.js"></script>
+<script src="/static/js/distpicker.js"></script>
+<script src="/static/js/main.js"></script>
+</head>
+<body>
+<div class="top_hw clearfix">
+    <div class="top_h clearfix">
+        <div class="top_hl"><span>欢迎来到中国梦想游，让你的梦想全程免费自由行！</span> 预定热线：<b>0571-63322269</b></div>
+                <div class="top_hr">
+            {% if request.session.user_name %}
+                <a href="user_info">欢迎你！{{ request.session.user_name }}</a>|<a href="logout">注销</a>
+            {% else %}
+                 <a href="login">登录</a>  |  <a href="register">注册</a>
+            {% endif %}
+            |  <a href="#">梦想收藏</a>  |  <a href="#">设为首页</a></div>
+    </div>
+    </div>
+</div>
+<div class="head_w">
+    <div class="head_t clearfix">
+        <div class="logo"><img src="/static/images/logo.jpg"></div>
+        <div class="rx_line"><img src="/static/images/rx.jpg"></div>
+    </div>
+</div>
+<div class="mainNav clearfix">
+    <ul class="Nav_ul">
+        <li><a href="/">首页</a><img src="/static/images/nav_line.jpg"></li>
+        <li><a href="../旅游路线.html">旅游路线</a><img src="/static/images/nav_line.jpg"></li>
+        <li><a href="../旅游景点.html">旅游景点</a><img src="/static/images/nav_line.jpg"></li>
+        <li><a href="../餐饮住宿.html">餐饮住宿</a><img src="/static/images/nav_line.jpg"></li>
+        <li><a href="../交通路线-详情1.html">交通线路</a><img src="/static/images/nav_line.jpg"></li>
+        <li><a href="../旅游团购.html">旅游团购</a><img src="/static/images/nav_line.jpg"></li>
+        <li><a href="../list_15_0_1">地方特产</a><img src="/static/images/nav_line.jpg"></li>
+        <li><a href="../自动生成简介.html">自动生成简介</a><img src="/static/images/nav_line.jpg"></li>
+        <li><a href="../团队简介-关于中国梦想游.html">团队简介</a><img src="/static/images/nav_line.jpg"></li>
+        <li><a href="../行程导航-详情.html">行程导航</a></li>
+    </ul>
+</div>
+<div class="b_wrap">
+    <div class="current"><span>当前所在地：</span><a href="/">首页</a> >> <a href="user_info">会员中心</a></div>
+    <div class="fmember">
+    	<div class="fmleft">
+        	<div class="fmleft_top"><img src="/static/images/fmbt1.png" border="0"></div>
+            <div class="fmlist">
+            	<ul>
+                	<li class="f1">订单中心</li>
+                	<li> >><a href="../会员中心%20-%20我的订单.html">我的订单</a> </li>
+                    <li> >><a href="../会员中心%20-%20发布结伴同行.html">发布结伴同行</a> </li>
+                    <li> >><a href="../会员中心%20-%20我申请的结伴同行.html">我申请的结伴同行</a> </li>
+                    <li> >><a href="../会员中心%20-%20我的点评.html">我的点评</a> </li>
+                    <li class="f2"> >><a href="../会员中心%20-%20我的提问.html">我的提问</a> </li>
+                </ul>
+                <ul>
+                	<li class="f1">我的优惠卡券</li>
+                	<li> >><a href="../会员中心%20-%20现金账号.html">现金账号</a> </li>
+                    <li> >><a href="../会员中心%20-%20抵用券.html">抵用券</a> </li>
+                    <li class="f2"> >><a href="#">旅游券</a> </li>
+                </ul>
+                <ul>
+                	<li class="f1">账户信息</li>
+                	<li> >><a href="user_info">个人资料</a> </li>
+                    <li> >><a href="../会员中心%20-%20账户安全.html">账户安全</a> </li>
+                    <li> >><a href="../会员中心%20-%20我的积分.html">我的积分</a> </li>
+                    <li> >><a href="../会员中心%20-%20修改密码.html">修改密码</a> </li>
+                    <li class="f2"> >><a href="会员中心 - 配送地址">配送地址</a> </li>
+                </ul>
+            </div>
+        </div>
+        <div class="fmright">
+        	<div class="fmr1">
+            	<div class="fmr1_top">{% if add %}修改{% else %}新增{% endif %}收货地址</div>
+                <form action="add_save" method="post">
+                    <input type="hidden" value="{{ add.id }}" name="aid">
+                    {% csrf_token %}
+                <div class="fmr1_m">
+                    	<table border="0" cellpadding="0" cellspacing="0" width="638">
+                        	<tr>
+                            	<td width="60" align="left" height="30">收件人：</td>
+                                <td width="578" align="left" height="30"><input type="text" class="finput3" name="reciver" maxlength="20" value="{{ add.reciver }}">&nbsp;<span class="fspan9">（必填）</span></td>
+                            </tr>
+                            <tr>
+                            	<td width="100" align="left" height="30">配送地址：</td>
+                                <td width="578" align="left" height="30" data-toggle="distpicker" id="distpicker1"><select name="sheng" id="sheng"></select>&nbsp;<select name="shi" id="shi"></select>&nbsp;<input type="text" class="finput3" name="detialaddr" maxlength="100" value="{{ add.detialaddr }}">&nbsp;<span class="fspan9">（必填）</span></td>
+                            </tr>
+                            <tr>
+                            	<td width="100" align="left" height="30">邮编：</td>
+                                <td width="578" align="left" height="30"><input type="text" class="finput4" name="yzbm" maxlength="6" value="{{ add.yzbm }}">&nbsp;<span class="fspan9">（必填）</span></td>
+                            </tr>
+                            <tr>
+                            	<td width="100" align="left" height="30">手机：</td>
+                                <td width="578" align="left" height="30"><input type="text" class="finput3" name="rphone" maxlength="11" value="{{ add.rphone }}">&nbsp;<span class="fspan9">（手机）</span></td>
+                            </tr>
+                            <tr>
+                            	<td colspan="2" height="40"><input type="submit" value="保存"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" height="20"><input type="submit" value="取消"></td>
+                            </tr>
+                        </table>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="friend_w clearfix">
+    <div class="friend clearfix">
+        <dl class="friend_dl bg01">
+            <dt><b>网站使用流程</b></dt>
+            <dd><a href="#">网站使用流程</a></dd>
+            <dd><a href="#">网站预定流程</a></dd>
+            <dd><a href="#">会员注册流程</a></dd> 
+            <dd><a href="#">网站支付流程</a></dd>
+        </dl>
+        <dl class="friend_dl bg02">
+            <dt><b>会员中心</b></dt>
+            <dd><a href="#">会员注册/登录</a></dd>
+            <dd><a href="#">帮助中心</a></dd>
+            <dd><a href="#">积分中心</a></dd>
+            <dd><a href="#">支付中心</a></dd>
+        </dl>
+        <dl class="friend_dl bg03">
+            <dt><b>公司简介</b></dt>
+            <dd><a href="#">关于梦想游</a></dd> 
+            <dd><a href="#">加入梦想游</a></dd> 
+            <dd><a href="#">公司动态</a></dd>
+            <dd><a href="#">网站地图</a></dd>
+        </dl>
+        <dl class="friend_dl bg04">
+            <dt><b>合作伙伴</b></dt>
+            <dd><a href="#">加盟合作</a></dd> 
+            <dd><a href="#">广告合作</a></dd> 
+            <dd><a href="#">运营合作</a></dd> 
+            <dd><a href="#">友情链接</a></dd>
+        </dl>
+        <dl class="friend_dl bg05">
+            <dt><b>旅游查询</b></dt>
+            <dd><a href="#">天气预报</a></dd>  
+            <dd><a href="#">火车查询</a></dd> 
+            <dd><a href="#">电子地图</a></dd>   
+            <dd><a href="#">航班时刻</a></dd>
+        </dl>
+        <br style="clear:both">
+    </div>
+</div>
+<div class="footer_w">
+    <div class="footer clearfix">
+        <div class="footer_c">
+            <p>地址：中国浙江省杭州市西湖区教工路316号 &nbsp;| &nbsp;服务热线：0571-62332269 &nbsp; | &nbsp;传真：0571-62337233  备案号：0453-2xxxxxx</p>
+            <p>Copyright © 2013 中国梦想旅游发展有限公司 All Rights Reserved. 技术支持：<a href="#">杭州风靡网络</a></p>
+        </div>
+        <div class="f_logo"><img src="/static/images/b_logo.jpg"></div>
+        <br style="clear:both">
+    </div>
+</div>
+</body>
+</html>
+<script>
+{#    $("#distpicker1").distpicker({autoSelect:false});#}
+    $("#distpicker1").distpicker({
+      province: "{{ add.sheng }}",
+      city: "{{ add.shi }}",
+    });
+</script>

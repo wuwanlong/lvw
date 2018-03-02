@@ -1,0 +1,484 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>中国梦想游--地方特产页</title>
+<link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/static/js/imgtoggle.js"></script>
+<script type="text/javascript">
+window. onload=function(){
+    var iTgl=new k_iToggle();
+        iTgl.init({
+            boxId:'box',
+            numId:'num',
+            imgId:'imgs',
+            isAuto:true,
+            aCls:'act',
+            iCls:'imgs1',
+            direct:'crt'
+        });
+        chg(iTgl,'chg');
+        _auto(iTgl,'auto_1');
+
+    //改变方向
+    function chg(o,id){
+        $('#'+id).click(function(){
+            if(o.direct()=='crt'){
+                o.direct('lvl');
+                $(this).text('纵向');
+            }else{
+                o.direct('crt');
+                $(this).text('横向');
+            }
+        });
+    }
+
+    function _auto(o,id){
+        $('#'+id).click(function(){
+            if(o.isAuto){
+                o.isAuto=false;
+                $(this).text('自动播放已停止');
+            }else{
+                o.isAuto=true;
+                o.auto();
+                $(this).text('自动播放');
+            }
+        });
+    }
+}
+</script>
+<script type="text/javascript">
+    $(function(){
+        var wweya_li =$("div.tab_menu ul li");
+        wweya_li.click(function(){
+        $(this).addClass("selected")
+         .siblings().removeClass("selected");
+            var index =  wweya_li.index(this);
+        $("div.tab_box > div")
+        .eq(index).show(100)
+            .siblings().hide();
+                }).hover(function(){
+            $(this).addClass("hover");
+        },function(){
+            $(this).removeClass("hover");
+        });
+    });
+</script>
+</head>
+<body>
+<div class="top_hw clearfix">
+    <div class="top_h clearfix">
+        <div class="top_hl"><span>欢迎来到中国梦想游，让你的梦想全程免费自由行！</span> 预定热线：<b>0571-63322269</b></div>
+                <div class="top_hr">
+            {% if request.session.user_name %}
+                <a href="user/user_info">欢迎你！{{ request.session.user_name }}</a>|<a href="user/logout">注销</a>
+            {% else %}
+                 <a href="user/login">登录</a>  |  <a href="user/register">注册</a>
+            {% endif %}
+           |  <a href="#">梦想收藏</a>  |  <a href="#">设为首页</a></div>
+    </div>
+</div>
+<div class="head_w">
+    <div class="head_t clearfix">
+        <div class="logo"><img src="/static/images/logo.jpg"></div>
+        <div class="rx_line"><img src="/static/images/rx.jpg"></div>
+    </div>
+</div>
+<div class="mainNav clearfix">
+    <ul class="Nav_ul">
+        <li><a href="/">首页</a><img src="/static/images/nav_line.jpg"></li>
+        <li ><a  href="../旅游路线.html">旅游路线</a><img src="/static/images/nav_line.jpg"></li>
+        <li  ><a href="../旅游景点.html">旅游景点</a><img src="/static/images/nav_line.jpg"></li>
+        <li><a href="../餐饮住宿.html">餐饮住宿</a><img src="/static/images/nav_line.jpg"></li>
+        <li  ><a href="../交通路线-详情1.html">交通线路</a><img src="/static/images/nav_line.jpg"></li>
+        <li><a href="../旅游团购.html">旅游团购</a><img src="/static/images/nav_line.jpg"></li>
+        <li  class="cur"><a href="#">地方特产</a><img src="/static/images/nav_line.jpg"></li>
+        <li><a href="../自动生成简介.html">自动生成简介</a><img src="/static/images/nav_line.jpg"></li>
+        <li><a href="../团队简介-关于中国梦想游.html">团队简介</a><img src="/static/images/nav_line.jpg"></li>
+        <li><a href="../行程导航-详情.html">行程导航</a></li>
+    </ul>
+</div>
+<div class="b_wrap">
+    <div class="current"><span>当前所在地：</span><a href="/">首页</a> >> <a href="#">地方特产</a> </div>
+    <div class="clumn_w clearfix">
+        <div class="clu_zb">
+            <div class="tab_menu mul_w">
+                <ul class="tab_mul">
+                    <li class="selected">全自助游</li>
+                    <li>途径城市设定</li>
+                    <li>入住酒店设定</li>
+                    <li>交通设定</li>
+                    <li>线路设定</li>
+                    <li>特殊需求线路</li>
+                </ul>
+            </div>
+            <div class="tab_box tw_tab">
+                 <div>
+                     <table class="t_tab" width="250" border="0" cellspacing="0" cellpadding="0">
+                       <tr>
+                         <td>入住城市</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>入住日期</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>离店日期</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>行程价格</td>
+                         <td><select name=""></select></td>
+                       </tr>
+                       <tr>
+                         <td>酒店位置</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>酒店名称</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>&nbsp;</td>
+                         <td><a href="#">生成行程单搜索</a></td>
+                       </tr>
+                     </table>
+                 </div>
+                 <div class="hide">
+                    <table class="t_tab" width="250" border="0" cellspacing="0" cellpadding="0">
+                       <tr>
+                         <td>入住城市</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>入住日期</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>离店日期</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>行程价格</td>
+                         <td><select name=""></select></td>
+                       </tr>
+                       <tr>
+                         <td>酒店位置</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>酒店名称</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>&nbsp;</td>
+                         <td><a href="#">生成行程单搜索</a></td>
+                       </tr>
+                     </table>
+                 </div>
+                 <div class="hide">
+                    <table class="t_tab" width="250" border="0" cellspacing="0" cellpadding="0">
+                       <tr>
+                         <td>入住城市</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>入住日期</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>离店日期</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>行程价格</td>
+                         <td><select name=""></select></td>
+                       </tr>
+                       <tr>
+                         <td>酒店位置</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>酒店名称</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>&nbsp;</td>
+                         <td><a href="#">生成行程单搜索</a></td>
+                       </tr>
+                     </table>
+                    </div>
+                 <div class="hide">
+                    <table class="t_tab" width="250" border="0" cellspacing="0" cellpadding="0">
+                       <tr>
+                         <td>入住城市</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>入住日期</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>离店日期</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>行程价格</td>
+                         <td><select name=""></select></td>
+                       </tr>
+                       <tr>
+                         <td>酒店位置</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>酒店名称</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>&nbsp;</td>
+                         <td><a href="#">生成行程单搜索</a></td>
+                       </tr>
+                     </table>
+                 </div>
+                 <div class="hide">
+                    <table class="t_tab" width="250" border="0" cellspacing="0" cellpadding="0">
+                       <tr>
+                         <td>入住城市</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>入住日期</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>离店日期</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>行程价格</td>
+                         <td><select name=""></select></td>
+                       </tr>
+                       <tr>
+                         <td>酒店位置</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>酒店名称</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>&nbsp;</td>
+                         <td><a href="#">生成行程单搜索</a></td>
+                       </tr>
+                     </table>
+                    </div>
+                 <div class="hide">
+                    <table class="t_tab" width="250" border="0" cellspacing="0" cellpadding="0">
+                       <tr>
+                         <td>入住城市</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>入住日期</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>离店日期</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>行程价格</td>
+                         <td><select name=""></select></td>
+                       </tr>
+                       <tr>
+                         <td>酒店位置</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>酒店名称</td>
+                         <td><input name="" type="text"></td>
+                       </tr>
+                       <tr>
+                         <td>&nbsp;</td>
+                         <td><a href="#">生成行程单搜索</a></td>
+                       </tr>
+                     </table>
+                    卦</div>
+            </div>
+        </div>
+        <div class="in">
+          <div class="pbox">
+            <div id="box" class="box">
+              <ul id="imgs">
+                <li><a href="#"><img src="/static/images/bimg01.jpg" width="570" height="280"></a></li>
+                <li><a href="#"><img src="/static/images/bimg01.jpg" width="570" height="280"></a></li>
+                <li><a href="#"><img src="/static/images/bimg01.jpg" width="570" height="280"></a></li>
+                <li><a href="#"><img src="/static/images/bimg01.jpg" width="570" height="280"></a></li>
+              </ul>
+            </div>
+            <div class="cons">
+              <ul id="num" class="num">
+                <li class="act"><a href="#">夏阳湖皇冠假日酒店</a></li>
+                <li><a href="#">黄金水岸开业酬宾</a></li>
+                <li><a href="#"> 首尔公寓酒店</a></li>
+                <li style="width:140px"><a href="#"> 新加坡文化酒店</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="clumn_w clearfix">
+        <div class="clumn_l">
+            <div class="clumn">
+                <div class="clumn_tit t01">地区划分</div>
+                <div class="clumn_con"><a href="/list_{{ a.pk }}_{{ sort }}_1"></a>
+                    {% for a in request.session.typeinfos %}
+                    <div class="cln_w">
+                        <p>{{ a.fields.ttitle }}</p>
+                        <div class="cln_c clearfix">
+                            {% for b in a.sub %}
+                          <a href="/list_{{ b.pk }}_{{ sort }}_1">{{ b.fields.ttitle }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="clumn">
+                <div class="clumn_tit t03"><span>浏览历史记录</span><a href="#">更多>></a></div>
+                <div class="clumn_con">
+                    <ul class="clu_ul s_ul">
+                        <li><a href="#">日本航空·大阪自由行5日    </a><span>¥3152</span></li>
+                        <li><a href="#">日本航空·名古屋自由行4日  </a><span>¥3129</span></li>
+                        <li><a href="#">购物·东京涉谷原宿自由行5日</a><span>¥5880</span></li>
+                        <li><a href="#">日本航空·大阪自由行5日    </a><span>¥3152</span></li>
+                        <li><a href="#">日本航空·名古屋自由行4日  </a><span>¥3129</span></li>
+                        <li><a href="#">购物·东京涉谷原宿自由行5日</a><span>¥5880</span></li>
+                        <li><a href="#">日本航空·大阪自由行5日    </a><span>¥3152</span></li>
+                        <li><a href="#">日本航空·名古屋自由行4日  </a><span>¥3129</span></li>
+                        <li><a href="#">购物·东京涉谷原宿自由行5日</a><span>¥5880</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="clumn_r">
+            <div class="tc_tit">{{ typeinfo }}&nbsp;&nbsp;&nbsp;&nbsp;<a href="/list_{{ typeinfo.pk }}_1_1">最新</a>
+                &nbsp;&nbsp;|&nbsp;&nbsp;<a href="/list_{{ typeinfo.pk }}_3_1">最热</a>
+                &nbsp;&nbsp;|&nbsp;&nbsp;<a href="/list_{{ typeinfo.pk }}_2_1">价格</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input style="width: 180px" class="fl" id="ssnr" value="{{ ssnr }}" placeholder="请输入您要搜索的内容" />
+            <input type="button"  id="ssan" value="搜索" class="fl box-s" />
+            </div>
+            <div class="tc_wrap clearfix">
+                {% for goods in page %}
+              <dl>
+                <dt><a href="/{{ goods.pk }}"><img src="/static/{{ goods.fields.gpic }}"></a></dt>
+                <dd>
+                  <p class="d01"><a href="地方特产-详情.html">{{ goods.fields.gtitle }}</a></p>
+                  <p><span>{{ goods.fields.gintro }}</span></p>
+                  <p>优惠价：<span>¥{{ goods.fields.gprice }}</span></p>
+                </dd>
+              </dl>
+                {% endfor %}
+                <div>
+                    <span>当前第{{ page.number }}页,共{{ paginator.num_pages}}页</span>&nbsp;&nbsp;&nbsp;
+                    {% if page.has_previous %}
+                <a href="/list_{{ typeinfo.id }}_{{ sort }}_{{ page.previous_page_number }}?ssnr={{ ssnr }}" >上一页</a>
+                    {% endif %}
+
+                    <select id="tzxl">
+                <option value="1">--请选择--</option>
+                    {% for pindex in paginator.page_range %}
+                        <option>{{ pindex }}</option>
+                    {% endfor %}
+                </select>
+
+                <input type="button" id="tzan" value="确定" />
+
+                    {% if page.has_next %}
+                <a href="/list_{{ typeinfo.id }}_{{ sort }}_{{ page.next_page_number }}?ssnr={{ ssnr }}">下一页</a>
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="friend_w clearfix">
+    <div class="friend clearfix">
+        <dl class="friend_dl bg01">
+            <dt><b>网站使用流程</b></dt>
+            <dd><a href="#">网站使用流程</a></dd>
+            <dd><a href="#">网站预定流程</a></dd>
+            <dd><a href="#">会员注册流程</a></dd>
+            <dd><a href="#">网站支付流程</a></dd>
+        </dl>
+        <dl class="friend_dl bg02">
+            <dt><b>会员中心</b></dt>
+            <dd><a href="#">会员注册/登录</a></dd>
+            <dd><a href="#">帮助中心</a></dd>
+            <dd><a href="#">积分中心</a></dd>
+            <dd><a href="#">支付中心</a></dd>
+        </dl>
+        <dl class="friend_dl bg03">
+            <dt><b>公司简介</b></dt>
+            <dd><a href="#">关于梦想游</a></dd>
+            <dd><a href="#">加入梦想游</a></dd>
+            <dd><a href="#">公司动态</a></dd>
+            <dd><a href="#">网站地图</a></dd>
+        </dl>
+        <dl class="friend_dl bg04">
+            <dt><b>合作伙伴</b></dt>
+            <dd><a href="#">加盟合作</a></dd>
+            <dd><a href="#">广告合作</a></dd>
+            <dd><a href="#">运营合作</a></dd>
+            <dd><a href="#">友情链接</a></dd>
+        </dl>
+        <dl class="friend_dl bg05">
+            <dt><b>旅游查询</b></dt>
+            <dd><a href="#">天气预报</a></dd>
+            <dd><a href="#">火车查询</a></dd>
+            <dd><a href="#">电子地图</a></dd>
+            <dd><a href="#">航班时刻</a></dd>
+        </dl>
+    </div>
+</div>
+<div class="footer_w">
+    <div class="footer clearfix">
+        <div class="footer_c">
+            <p>地址：中国浙江省杭州市西湖区教工路316号 &nbsp;| &nbsp;服务热线：0571-62332269 &nbsp; | &nbsp;传真：0571-62337233  备案号：0453-2xxxxxx</p>
+            <p>Copyright © 2013 中国梦想旅游发展有限公司 All Rights Reserved. 技术支持：<a href="#">杭州风靡网络</a></p>
+        </div>
+        <div class="f_logo"><img src="/static/images/b_logo.jpg"></div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $(window).keydown(function (event) {
+        if(event.keyCode==13){
+            $('#ssan').click();
+        }
+    })
+    $('#tzan').click(function () {
+        var tzys=$('#tzxl').val().trim();
+        if(tzys!=''){
+        window.location.href='/list_{{ typeinfo.id }}_{{ sort }}_'+tzys+'?ssnr='+'{{ ssnr }}';}
+    })
+    $('#ssan').click(function() {
+        var ssnr=$('#ssnr').val().trim();
+        if(ssnr!=''){
+            window.location.href='/list_{{ typeinfo.id }}_{{ sort }}_1?ssnr='+$('#ssnr').val();
+            }
+        else{
+            $('#ssnr').val('');
+            $('#ssnr').focus();
+            $('#ssnr').attr('placeholder','搜索内容不能为空')
+        }
+    })
+</script>
